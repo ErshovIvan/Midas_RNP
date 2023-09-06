@@ -1,0 +1,4 @@
+gspread_midas.json
+config.py
+env/
+__pycache__/
