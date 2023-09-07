@@ -1,0 +1,28 @@
+# Настройки Telegram
+BOT_TOKEN = ""
+CHAT_ID = 
+
+# Настройки gs.py
+GOOGLE_CONF = ""
+SH_NAME = ""
+
+REFERENCE = "СПРАВОЧНИК"
+VAULT = "СВЕДЕНИЕ"
+
+BEGINNING = "ИТОГ"
+
+PARAMETERS = [
+    "Лиды, шт.",
+    "Заявки, шт.",
+    "Выставленные счета, шт.",
+]
+
+
+# Настройки Scheduler
+TIME_SET = {
+    "trigger": "cron",
+    "day_of_week": "mon-fri",
+    "hour": 18,
+    "minute": 10,
+    "timezone": "Asia/Yekaterinburg",
+}
