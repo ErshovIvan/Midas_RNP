@@ -90,5 +90,4 @@ def make_last_week_report():
         last_week_days.insert(0, last_week_day)
     report = make_report(last_week_days)
     return(report)
-
-print(make_last_week_report())
+    
