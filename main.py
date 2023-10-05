@@ -6,8 +6,8 @@ from aiogram.enums.parse_mode import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from config import BOT_TOKEN, TIME_SET
-from handlers import router, send_report_to_chat
+from config import BOT_TOKEN, TIME_SET_DAILY, TIME_SET_WEEKLY
+from handlers import router, send_daily_report_to_chat, send_weekly_report_to_chat
 
 
 async def main():
@@ -15,7 +15,8 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(router)
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(send_report_to_chat, trigger=TIME_SET["trigger"], day_of_week=TIME_SET["day_of_week"], hour=TIME_SET["hour"], minute=TIME_SET["minute"], timezone=TIME_SET["timezone"], kwargs={"bot":bot})
+    scheduler.add_job(send_daily_report_to_chat, trigger=TIME_SET_DAILY["trigger"], day_of_week=TIME_SET_DAILY["day_of_week"], hour=TIME_SET_DAILY["hour"], minute=TIME_SET_DAILY["minute"], timezone=TIME_SET_DAILY["timezone"], kwargs={"bot":bot})
+    scheduler.add_job(send_weekly_report_to_chat, trigger=TIME_SET_WEEKLY["trigger"], day_of_week=TIME_SET_WEEKLY["day_of_week"], hour=TIME_SET_WEEKLY["hour"], timezone=TIME_SET_WEEKLY["timezone"], kwargs={"bot":bot})
     scheduler.start()
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())

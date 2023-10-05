@@ -55,11 +55,22 @@ def make_report(date_list):
     else:
         report = f"\n\tРезультаты за {date_list[0]} - {date_list[-1]}"
 
+    parameters_sum = {}
+
     for manager_name, manager_values in managers_data.items():
         report += f"\n\n{manager_name}"
         for parameter_name, parameter_value in manager_values.items():
             report += f"\n{parameter_name}: {parameter_value}"
+            if parameter_name in parameters_sum:
+                parameters_sum[parameter_name] += int(parameter_value)
+            else:
+                parameters_sum[parameter_name] = 0
     
+    report += f"\n\nИТОГ"
+
+    for parameter_name, parameter_value in parameters_sum.items():
+        report += f"\n{parameter_name}: {parameter_value}"
+
     return(report)
 
 
@@ -71,4 +82,13 @@ def make_today_report():
 
 
 
+def make_last_week_report():
+    #last_monday_date = (datetime.datetime.today()-datetime.timedelta(days=7)).strftime('%d.%m')
+    last_week_days = []
+    for i in range(1, 8):
+        last_week_day = (datetime.datetime.today()-datetime.timedelta(days=i)).strftime('%d.%m')
+        last_week_days.insert(0, last_week_day)
+    report = make_report(last_week_days)
+    return(report)
 
+print(make_last_week_report())

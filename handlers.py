@@ -14,5 +14,8 @@ async def send_report(msg: Message):
     await msg.answer(gs.make_today_report())
 
 
-async def send_report_to_chat(bot: Bot):
+async def send_daily_report_to_chat(bot: Bot):
     await bot.send_message(CHAT_ID, gs.make_today_report())
+
+async def send_weekly_report_to_chat(bot: Bot):
+    await bot.send_message(CHAT_ID, gs.make_last_week_report())

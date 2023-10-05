@@ -19,10 +19,17 @@ PARAMETERS = [
 
 
 # Настройки Scheduler
-TIME_SET = {
+TIME_SET_DAILY = {
     "trigger": "cron",
     "day_of_week": "mon-fri",
     "hour": 18,
     "minute": 10,
+    "timezone": "Asia/Yekaterinburg",
+}
+
+TIME_SET_WEEKLY = {
+    "trigger": "cron",
+    "day_of_week": "thu",
+    "hour": 9,
     "timezone": "Asia/Yekaterinburg",
 }

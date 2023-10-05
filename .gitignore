@@ -1,4 +1,4 @@
-gspread_midas.json
+*.json
 config.py
 env/
 __pycache__/
