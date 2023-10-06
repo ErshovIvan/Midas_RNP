@@ -55,20 +55,18 @@ def make_report(date_list):
     else:
         report = f"\n\tРезультаты за {date_list[0]} - {date_list[-1]}"
 
-    parameters_sum = {}
+    parameters_total = {}
+    for parameter in PARAMETERS:
+        parameters_total[parameter] = 0
 
     for manager_name, manager_values in managers_data.items():
         report += f"\n\n{manager_name}"
         for parameter_name, parameter_value in manager_values.items():
             report += f"\n{parameter_name}: {parameter_value}"
-            if parameter_name in parameters_sum:
-                parameters_sum[parameter_name] += int(parameter_value)
-            else:
-                parameters_sum[parameter_name] = 0
+            parameters_total[parameter_name] += int(parameter_value)
     
     report += f"\n\nИТОГ"
-
-    for parameter_name, parameter_value in parameters_sum.items():
+    for parameter_name, parameter_value in parameters_total.items():
         report += f"\n{parameter_name}: {parameter_value}"
 
     return(report)
@@ -90,4 +88,3 @@ def make_last_week_report():
         last_week_days.insert(0, last_week_day)
     report = make_report(last_week_days)
     return(report)
-    
