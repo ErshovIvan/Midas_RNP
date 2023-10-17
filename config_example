@@ -1,3 +1,4 @@
+
 # Настройки Telegram
 BOT_TOKEN = ""
 CHAT_ID = 
@@ -6,17 +7,25 @@ CHAT_ID =
 GOOGLE_CONF = ""
 SH_NAME = ""
 
+# Название ключевых листов
 REFERENCE = "СПРАВОЧНИК"
-VAULT = "СВЕДЕНИЕ"
+GUIDE = "СВЕДЕНИЕ"
+# Название ключевых ячеек
+GUIDE_MANAGERS_NAMES_COL = "Имя менеджера (Ф И)"
+GUIDE_MANAGERS_CONFIG_COL = "МОП ТГ БОТ"
+HEADS_COL_NAME = "HEADS"
+BLOCK_COL_NAME = "BLOCKS"
 
-BEGINNING = "ИТОГ"
-
-PARAMETERS = [
-    "Лиды, шт.",
-    "Заявки, шт.",
-    "Выставленные счета, шт.",
-]
-
+# Параметры по которым формируется отчет
+PARAMETERS = {
+    "ИТОГ": [
+        "Взято заявок в обработку, шт.",
+    ],
+    "ИСХОДЯЩИЕ": [
+    ],
+    "ВХОДЯЩИЕ": [
+    ],
+}
 
 # Настройки Scheduler
 TIME_SET_DAILY = {
@@ -29,7 +38,7 @@ TIME_SET_DAILY = {
 
 TIME_SET_WEEKLY = {
     "trigger": "cron",
-    "day_of_week": "thu",
+    "day_of_week": "mon",
     "hour": 9,
     "timezone": "Asia/Yekaterinburg",
 }
