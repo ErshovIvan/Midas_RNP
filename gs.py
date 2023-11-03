@@ -11,12 +11,12 @@ wrk_guide = sh.worksheet(REFERENCE)
 wrk_data = sh.worksheet(GUIDE)
 
 
-"""
-Вытаскивает всю необходимую информацию из гугл-таблицы за указанную дату/диапазон дат и форматирует в словарь
-{manager_name1: {block1:{parameter1: value1, parameter2: value2}, block2:{parameter3: value3},...}
-Возвращает managers_data (dict)
-"""
-def get_data(date_list):
+
+def get_data(date_list: list) -> dict:
+    """
+    Вытаскивает всю необходимую информацию из гугл-таблицы за указанную дату/диапазон дат и форматирует в словарь
+    {manager_name1: {block1:{parameter1: value1, parameter2: value2}, block2:{parameter3: value3},...}
+    """
 
     data = wrk_data.get_all_values()
     
@@ -72,11 +72,11 @@ def get_data(date_list):
     return(managers_data)
 
 
-"""
-Словарь с данными по кажому менеджеру форматируется в одну строку
-Возвращается report (str)
-"""    
-def make_report(date_list):
+    
+def make_report(date_list: list) -> str:
+    """
+    Словарь с данными по кажому менеджеру форматируется в одну строку
+    """
 
     # Если отчет вулючает 2 и больше даты, то в шапке "отчета" указываются первый и последний элемент списка дат.
     managers_data = get_data(date_list)
@@ -119,22 +119,31 @@ def make_report(date_list):
     return(report)
 
 
-"""
-Запускает создание очтета за сегодняшнее число.
-Возвращает report (str)
-"""
-def make_today_report():
+def make_today_report() -> str:
+    """
+    Запускает создание очтета за сегодняшнее число
+    """
     today_date = []
     today_date.append(datetime.datetime.today().strftime('%d.%m'))
     report = make_report(today_date)
     return(report)
 
 
-"""
-Запускает создание отчета за диапазон дат: (today-7days) по (today-1day). Условно за прошлую неделю.
-Возвращает report
-"""
-def make_last_week_report():
+
+def make_yesterday_report() -> str:
+    """
+    Запускает создание отчета за вчера
+    """
+    yesterday_date = []
+    yesterday_date.append((datetime.datetime.today()-datetime.timedelta(days=1)).strftime('%d.%m'))
+    report = make_report(yesterday_date)
+    return(report)
+
+
+def make_last_week_report() -> str:
+    """
+    Запускает создание отчета за диапазон дат: (today-7days) по (today-1day). Условно за прошлую неделю.
+    """
     #last_monday_date = (datetime.datetime.today()-datetime.timedelta(days=7)).strftime('%d.%m')
     last_week_days = []
     for i in range(1, 8):
