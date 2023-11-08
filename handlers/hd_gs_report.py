@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from config import CHAT_ID, S_GROUP_ID, S_GROUP_THREAD
+from config import S_GROUP_ID, S_GROUP_THREAD
 
 import gs
 from texts import t_admin_handlers, t_gs_report, t_system
@@ -55,18 +55,6 @@ async def send_gs_report(callback: CallbackQuery, bot: Bot, state: FSMContext):
         await bot.send_message(text=t_gs_report.report_range, reply_markup=kb_gs_report.report_range, chat_id=chat_id)
 
 
-
-async def send_daily_report_to_chat(bot: Bot):
-    """ Выводит сегодняшний отчет РНП в групповой чат. """
-    await bot.send_message(CHAT_ID, gs.make_today_report())
-
-
-async def send_weekly_report_to_chat(bot: Bot):
-    """ Выводит отчет РНП за последние 7 дней в групповой чат. """
-    await bot.send_message(CHAT_ID, gs.make_last_week_report())
-
-
-# Тест
 async def send_daily_report_to_s_group(bot: Bot):
     """ Выводит сегодняшний отчет РНП в супер группу. """
     await bot.send_message(chat_id=S_GROUP_ID, message_thread_id=S_GROUP_THREAD, text=gs.make_today_report())

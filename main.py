@@ -29,7 +29,7 @@ async def main():
     scheduler = AsyncIOScheduler()
 
     scheduler.add_job(
-        hd_gs_report.send_daily_report_to_chat,
+        hd_gs_report.send_daily_report_to_s_group,
         trigger=TIME_SET_DAILY["trigger"],
         day_of_week=TIME_SET_DAILY["day_of_week"],
         hour=TIME_SET_DAILY["hour"],
@@ -39,7 +39,7 @@ async def main():
     )
 
     scheduler.add_job(
-        hd_gs_report.send_weekly_report_to_chat,
+        hd_gs_report.send_weekly_report_to_s_group,
         trigger=TIME_SET_WEEKLY["trigger"],
         day_of_week=TIME_SET_WEEKLY["day_of_week"],
         hour=TIME_SET_WEEKLY["hour"],
