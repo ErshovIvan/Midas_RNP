@@ -62,4 +62,4 @@ async def send_daily_report_to_s_group(bot: Bot):
 
 async def send_weekly_report_to_s_group(bot: Bot):
     """ Выводит отчет РНП за последние 7 дней в супер группу. """
-    await bot.send_message(chat_id=S_GROUP_ID, message_thread_id=S_GROUP_THREAD, text=gs.make_today_report())
+    await bot.send_message(chat_id=S_GROUP_ID, message_thread_id=S_GROUP_THREAD, text=gs.make_last_week_report())
